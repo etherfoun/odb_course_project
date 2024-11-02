@@ -1,0 +1,54 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bin/
+obj/
+[Ll]og/
+[Ll]ogs/
+*.log
+
+# Visual Studio Code
+.vscode/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+packages/
+
+# Rider
+.idea/
+
+# Others
+*.mdb
+*.pdb
+*.ipch/
+*.obj
+*.idb
+*.ilk
+*.sdf
+*.suo
+*.opensdf
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.jfr
+*.dproj
+*.dsk
+*.tmp
+*.temp
+*.userprefs
+*.vs/
+*.vscode/
+*.ncb
+*.sln.ide
+*.sln.bin
+*.sln.user
+*.sln.tlog

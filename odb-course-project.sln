@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "odb-course-project", "odb-course-project\odb-course-project.csproj", "{AB53BEFB-14AB-48DD-9010-2C2F1A5F048B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB53BEFB-14AB-48DD-9010-2C2F1A5F048B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB53BEFB-14AB-48DD-9010-2C2F1A5F048B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB53BEFB-14AB-48DD-9010-2C2F1A5F048B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB53BEFB-14AB-48DD-9010-2C2F1A5F048B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA90EE3D-FB95-49FE-A54D-169AC76EEAD1}
+	EndGlobalSection
+EndGlobal

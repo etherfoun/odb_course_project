@@ -1,0 +1,49 @@
+﻿<Window x:Class="odb_course_project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управління готелем" Height="600" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Гості">
+                <StackPanel>
+                    <DataGrid x:Name="GuestsDataGrid" AutoGenerateColumns="True" Margin="10" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Додати гостя" Click="AddGuestButton_Click" Margin="5"/>
+                        <Button Content="Редагувати гостя" Click="EditGuestButton_Click" Margin="5"/>
+                        <Button Content="Видалити гостя" Click="DeleteGuestButton_Click" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Бронювання">
+                <StackPanel>
+                    <DataGrid x:Name="BookingsDataGrid" AutoGenerateColumns="True" Margin="10" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Додати бронювання" Click="AddBookingButton_Click" Margin="5"/>
+                        <Button Content="Редагувати бронювання" Click="EditBookingButton_Click" Margin="5"/>
+                        <Button Content="Видалити бронювання" Click="DeleteBookingButton_Click" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Платежі">
+                <StackPanel>
+                    <DataGrid x:Name="PaymentsDataGrid" AutoGenerateColumns="True" Margin="10" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Додати платіж" Click="AddPaymentButton_Click" Margin="5"/>
+                        <Button Content="Редагувати платіж" Click="EditPaymentButton_Click" Margin="5"/>
+                        <Button Content="Видалити платіж" Click="DeletePaymentButton_Click" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Додатково">
+                <StackPanel>
+                    <Button Content="Середня вартість бронювання" Click="AveragePriceButton_Click" Margin="5"/>
+                    <Button Content="Список підтверджених бронювань" Click="ConfirmedBookingsButton_Click" Margin="5"/>
+                    <Button Content="Список гостей і платежів" Click="GuestPaymentsButton_Click" Margin="5"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
