@@ -479,6 +479,151 @@ namespace odb_course_project
             }
         }
 
+        private void GuestsInHotelTodayButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT g.name FROM Guests g
+                                     JOIN Bookings b ON g.guest_id = b.guest_id
+                                     WHERE @today BETWEEN b.check_in_date AND b.check_out_date";
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("today", DateTime.Today);
+                        var adapter = new NpgsqlDataAdapter(command);
+                        var dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        GuestsDataGrid.ItemsSource = dataTable.DefaultView;
+                    }
+                }
+                MessageBox.Show("Виведено гостей, які знаходяться в готелі сьогодні.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при завантаженні гостей: {ex.Message}");
+            }
+        }
+
+        // 2. Гость, который бронирует чаще всего
+        private void MostFrequentGuestButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT g.name, COUNT(b.booking_id) AS booking_count
+                                     FROM Guests g
+                                     JOIN Bookings b ON g.guest_id = b.guest_id
+                                     GROUP BY g.name
+                                     ORDER BY booking_count DESC
+                                     LIMIT 1";
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        var adapter = new NpgsqlDataAdapter(command);
+                        var dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        GuestsDataGrid.ItemsSource = dataTable.DefaultView;
+                    }
+                }
+                MessageBox.Show("Виведено гостя, який бронює найчастіше.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при завантаженні інформації: {ex.Message}");
+            }
+        }
+
+        // 3. Кількість людей, бронювавших у листопаді 2024
+        private void BookingsInNovember2024Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT COUNT(DISTINCT guest_id) AS guest_count
+                                     FROM Bookings
+                                     WHERE check_in_date BETWEEN '2024-11-01' AND '2024-11-30'";
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        var result = command.ExecuteScalar();
+                        MessageBox.Show($"Кількість гостей, що бронювали у листопаді 2024: {result}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при завантаженні інформації: {ex.Message}");
+            }
+        }
+
+        // 4. Номер, який бронюють найчастіше
+        private void MostFrequentRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT r.room_id, COUNT(b.booking_id) AS booking_count
+                                     FROM Rooms r
+                                     JOIN Bookings b ON r.room_id = b.room_id
+                                     GROUP BY r.room_id
+                                     ORDER BY booking_count DESC
+                                     LIMIT 1";
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        var adapter = new NpgsqlDataAdapter(command);
+                        var dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        BookingsDataGrid.ItemsSource = dataTable.DefaultView;
+                    }
+                }
+                MessageBox.Show("Виведено номер, який бронюють найчастіше.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при завантаженні інформації: {ex.Message}");
+            }
+        }
+
+        // 5. Максимальна кількість людей, що зупинялися за добу
+        private void MaxGuestsPerDayButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT check_in_date, COUNT(DISTINCT guest_id) AS guest_count
+                                     FROM Bookings
+                                     GROUP BY check_in_date
+                                     ORDER BY guest_count DESC
+                                     LIMIT 1";
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        var adapter = new NpgsqlDataAdapter(command);
+                        var dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        BookingsDataGrid.ItemsSource = dataTable.DefaultView;
+                    }
+                }
+                MessageBox.Show("Виведено максимальну кількість людей, що зупинялися за добу.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при завантаженні інформації: {ex.Message}");
+            }
+        }
+
         private string PromptInput(string message, string defaultValue = "")
         {
             return Microsoft.VisualBasic.Interaction.InputBox(message, "Input", defaultValue);

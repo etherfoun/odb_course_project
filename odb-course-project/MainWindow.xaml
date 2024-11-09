@@ -42,6 +42,13 @@
                     <Button Content="Середня вартість бронювання" Click="AveragePriceButton_Click" Margin="5"/>
                     <Button Content="Список підтверджених бронювань" Click="ConfirmedBookingsButton_Click" Margin="5"/>
                     <Button Content="Список гостей і платежів" Click="GuestPaymentsButton_Click" Margin="5"/>
+
+                    <!-- Добавленные кнопки -->
+                    <Button Content="Гості, що знаходяться в готелі сьогодні" Click="GuestsInHotelTodayButton_Click" Margin="5"/>
+                    <Button Content="Гість, що бронює найчастіше" Click="MostFrequentGuestButton_Click" Margin="5"/>
+                    <Button Content="Гості, що бронювали у листопаді 2024" Click="BookingsInNovember2024Button_Click" Margin="5"/>
+                    <Button Content="Найпопулярніший номер" Click="MostFrequentRoomButton_Click" Margin="5"/>
+                    <Button Content="Максимальна кількість гостей за добу" Click="MaxGuestsPerDayButton_Click" Margin="5"/>
                 </StackPanel>
             </TabItem>
         </TabControl>
